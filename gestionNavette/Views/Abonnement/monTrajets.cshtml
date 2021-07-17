@@ -1,0 +1,48 @@
+﻿@using gestionNavette.Models;
+@{
+    ViewBag.Title = "monTrajets";
+    
+        trajet item = ViewBag.monTrajet;
+    
+
+}
+
+<h2 style="color:#fff;">mon Trajet</h2>
+
+<div class="row" style="margin-top:50px;">
+    <div class="col-lg-4">
+
+        <ol class="list-group">
+            <li class="list-group-item" style="text-align: center;color: #1A4881;font-weight: 700;font-style: normal;font-size: 14px;line-height: 18px;letter-spacing: .1px;">Trajet</li>
+            <li class="list-group-item">Depart          :@item.villeD</li>
+            <li class="list-group-item">Arrivé          :@item.villeA</li>
+            <li class="list-group-item">Heure de depart :@item.heureD</li>
+            <li class="list-group-item">Heure d'arrivé  :@item.heureA</li>
+            <li class="list-group-item">nombre d'abonné  :@item.abonnements.Count()</li>
+           
+        </ol>
+
+    </div>
+
+    <div class="col-lg-4">
+        <ol class="list-group">
+            <li class="list-group-item" style="text-align: center;color: #1A4881;font-weight: 700;font-style: normal;font-size: 14px;line-height: 18px;letter-spacing: .1px;">Transport</li>
+            <li class="list-group-item">type            :@item.transport.type</li>
+            <li class="list-group-item">marque          :@item.transport.marque</li>
+            <li class="list-group-item">nombre de places:@item.transport.capacite</li>
+            <li class="list-group-item">couleur         :@item.transport.couleur</li>
+            <li class="list-group-item">nombre de portes:@item.transport.nbrPortes</li>
+            @if (item.transport.clim == true)
+            {
+                <li class="list-group-item">clim   :oui</li>
+            }
+            else
+            {
+                <li class="list-group-item">clim   :non</li>
+            }
+        </ol>
+    </div>
+
+</div>
+
+

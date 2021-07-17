@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="gestionNavetteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="abonnement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nbrMois" Type="Int32" Nullable="false" />
+    <Property Name="id_client" Type="Int32" Nullable="false" />
+    <Property Name="id_trajet" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="client" Relationship="Self.FK__abonnemen__id_cl__30F848ED" FromRole="abonnement" ToRole="client" />
+    <NavigationProperty Name="trajet" Relationship="Self.FK__abonnemen__id_tr__31EC6D26" FromRole="abonnement" ToRole="trajet" />
+  </EntityType>
+  <EntityType Name="client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prenom" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telephone" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="isSociete" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="abonnements" Relationship="Self.FK__abonnemen__id_cl__30F848ED" FromRole="client" ToRole="abonnement" />
+    <NavigationProperty Name="societes" Relationship="Self.FK__societe__id_clie__34C8D9D1" FromRole="client" ToRole="societe" />
+    <NavigationProperty Name="demandes" Relationship="gestionNavetteModel.FK__demande__id_clie__4CA06362" FromRole="client" ToRole="demande" />
+    <NavigationProperty Name="admins" Relationship="gestionNavetteModel.FK__admin__id_client__6FE99F9F" FromRole="client" ToRole="admin" />
+  </EntityType>
+  <EntityType Name="societe">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_client" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="client" Relationship="Self.FK__societe__id_clie__34C8D9D1" FromRole="societe" ToRole="client" />
+    <NavigationProperty Name="transports" Relationship="Self.FK__transport__id_so__35BCFE0A" FromRole="societe" ToRole="transport" />
+  </EntityType>
+  <EntityType Name="trajet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="heureD" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="heureA" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="villeD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prix" Type="Double" Nullable="false" />
+    <Property Name="villeA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_transport" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="abonnements" Relationship="Self.FK__abonnemen__id_tr__31EC6D26" FromRole="trajet" ToRole="abonnement" />
+    <NavigationProperty Name="transport" Relationship="Self.FK__trajet__id_trans__2E1BDC42" FromRole="trajet" ToRole="transport" />
+  </EntityType>
+  <EntityType Name="transport">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="marque" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="capacite" Type="Int32" Nullable="false" />
+    <Property Name="clim" Type="Boolean" />
+    <Property Name="couleur" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="nbrPortes" Type="Int32" />
+    <Property Name="id_societe" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="societe" Relationship="Self.FK__transport__id_so__35BCFE0A" FromRole="transport" ToRole="societe" />
+    <NavigationProperty Name="trajets" Relationship="Self.FK__trajet__id_trans__2E1BDC42" FromRole="transport" ToRole="trajet" />
+  </EntityType>
+  <Association Name="FK__abonnemen__id_cl__30F848ED">
+    <End Role="client" Type="Self.client" Multiplicity="1" />
+    <End Role="abonnement" Type="Self.abonnement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="abonnement">
+        <PropertyRef Name="id_client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__abonnemen__id_tr__31EC6D26">
+    <End Role="trajet" Type="Self.trajet" Multiplicity="1" />
+    <End Role="abonnement" Type="Self.abonnement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trajet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="abonnement">
+        <PropertyRef Name="id_trajet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__societe__id_clie__34C8D9D1">
+    <End Role="client" Type="Self.client" Multiplicity="1" />
+    <End Role="societe" Type="Self.societe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="societe">
+        <PropertyRef Name="id_client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__transport__id_so__35BCFE0A">
+    <End Role="societe" Type="Self.societe" Multiplicity="1" />
+    <End Role="transport" Type="Self.transport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="societe">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="transport">
+        <PropertyRef Name="id_societe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__trajet__id_trans__2E1BDC42">
+    <End Role="transport" Type="Self.transport" Multiplicity="1" />
+    <End Role="trajet" Type="Self.trajet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="transport">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="trajet">
+        <PropertyRef Name="id_transport" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="gestionNavetteEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="abonnements" EntityType="Self.abonnement" />
+    <EntitySet Name="clients" EntityType="Self.client" />
+    <EntitySet Name="societes" EntityType="Self.societe" />
+    <EntitySet Name="trajets" EntityType="Self.trajet" />
+    <EntitySet Name="transports" EntityType="Self.transport" />
+    <AssociationSet Name="FK__abonnemen__id_cl__30F848ED" Association="Self.FK__abonnemen__id_cl__30F848ED">
+      <End Role="client" EntitySet="clients" />
+      <End Role="abonnement" EntitySet="abonnements" />
+    </AssociationSet>
+    <AssociationSet Name="FK__abonnemen__id_tr__31EC6D26" Association="Self.FK__abonnemen__id_tr__31EC6D26">
+      <End Role="trajet" EntitySet="trajets" />
+      <End Role="abonnement" EntitySet="abonnements" />
+    </AssociationSet>
+    <AssociationSet Name="FK__societe__id_clie__34C8D9D1" Association="Self.FK__societe__id_clie__34C8D9D1">
+      <End Role="client" EntitySet="clients" />
+      <End Role="societe" EntitySet="societes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__transport__id_so__35BCFE0A" Association="Self.FK__transport__id_so__35BCFE0A">
+      <End Role="societe" EntitySet="societes" />
+      <End Role="transport" EntitySet="transports" />
+    </AssociationSet>
+    <AssociationSet Name="FK__trajet__id_trans__2E1BDC42" Association="Self.FK__trajet__id_trans__2E1BDC42">
+      <End Role="transport" EntitySet="transports" />
+      <End Role="trajet" EntitySet="trajets" />
+    </AssociationSet>
+    <EntitySet Name="demandes" EntityType="gestionNavetteModel.demande" />
+    <AssociationSet Name="FK__demande__id_clie__4CA06362" Association="gestionNavetteModel.FK__demande__id_clie__4CA06362">
+      <End Role="client" EntitySet="clients" />
+      <End Role="demande" EntitySet="demandes" />
+    </AssociationSet>
+    <EntitySet Name="admins" EntityType="gestionNavetteModel.admin" />
+    <AssociationSet Name="FK__admin__id_client__6FE99F9F" Association="gestionNavetteModel.FK__admin__id_client__6FE99F9F">
+      <End Role="client" EntitySet="clients" />
+      <End Role="admin" EntitySet="admins" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="demande">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="heureD" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="villeD" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="villeA" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="id_client" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="client" Relationship="gestionNavetteModel.FK__demande__id_clie__4CA06362" FromRole="demande" ToRole="client" />
+  </EntityType>
+  <Association Name="FK__demande__id_clie__4CA06362">
+    <End Type="gestionNavetteModel.client" Role="client" Multiplicity="1" />
+    <End Type="gestionNavetteModel.demande" Role="demande" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="demande">
+        <PropertyRef Name="id_client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="id_client" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="client" Relationship="gestionNavetteModel.FK__admin__id_client__6FE99F9F" FromRole="admin" ToRole="client" />
+  </EntityType>
+  <Association Name="FK__admin__id_client__6FE99F9F">
+    <End Type="gestionNavetteModel.client" Role="client" Multiplicity="1" />
+    <End Type="gestionNavetteModel.admin" Role="admin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="admin">
+        <PropertyRef Name="id_client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

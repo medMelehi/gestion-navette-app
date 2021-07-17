@@ -1,0 +1,14 @@
+﻿@using gestionNavette.Models;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>client</h2>
+
+<li>
+    @foreach (client item in ViewBag.clients)
+    {
+        <ol>@item.nom</ol>
+    }
+
+</li>

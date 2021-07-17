@@ -1,0 +1,44 @@
+﻿@using gestionNavette.Models;
+
+
+
+@{
+    ViewBag.Title = "listDemandes";
+}
+
+<h2 style="color:#FFF;">listDemandes</h2>
+
+@if (ViewBag.listDemandes == null)
+{
+    <h2 class="alert alert-danger">il n'y a aucune demande en ce moment  !</h2>
+}
+else{
+
+
+
+
+<div style="display: flex;flex-direction: column;margin: 36px 0 0;width: 100%;flex: 1 0 auto;background:#fff;border-radius: 4px;box-shadow: 0 22px 34px rgba(0,0,0,.1);overflow: hidden;width: 100%;margin: 0 auto;text-align:center;">
+    <div class="row justify-content-center ">
+        <div class="col-lg-8" style=" margin-left:140px;">
+            <table class="table">
+                <tr style="color: #1A4881; font-weight: 700; margin-left: 8px; font-style: normal; font-size: 14px; line-height: 18px; letter-spacing: .1px;">
+                    <td>depart</td>
+                    <td>arrivé</td>
+                    <td>heure depart</td>
+                </tr>
+                @foreach (demande item in ViewBag.listDemandes)
+                {
+
+                    <tr>
+                        <td>@item.villeD</td>
+                        <td>@item.villeA</td>
+                        <td>@item.heureD</td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+    </div>
+    </div>
+   
+        }

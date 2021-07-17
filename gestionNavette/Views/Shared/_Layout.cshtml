@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mon application ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="background: url('../../image/backgroung.jpg') center center / cover no-repeat fixed rgb(250, 250, 250); overflow: auto;">
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Nom d'application", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+
+                    @if (Session["client"] == null)
+                    {
+                        <li><a href="newTrajet">Dèposer Trajet</a></li>
+                        <li><a href="newClient">S'inscrire</a></li>
+                        <li>@Html.ActionLink("Se Connecter", "login", "Auth")</li>
+                    }
+                    else
+                    {
+                        if (Session["admin"] != null)
+                        {
+                            <li>@Html.ActionLink("Societes", "listSocietes", "Admin")</li>
+                            <li>@Html.ActionLink("clients", "listClients", "Admin")</li>
+                            <li>@Html.ActionLink("Demandes", "listDemandes", "Abonnement")</li>
+
+                        }
+                        else if (Session["isSociete"] != null)
+                        {
+                            <li>@Html.ActionLink("Deposer Trajet", "newTrajet", "Abonnement")</li>
+                            <li>@Html.ActionLink("Mes Trajets", "mesTrajets", "Abonnement")</li>
+                            <li>@Html.ActionLink("Demandes", "listDemandes", "Abonnement")</li>
+
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Mes abonnement", "mesAbonnements", "Abonnement")</li>
+                            <li><a href="newDemande">Dèposer Demande</a></li>
+                        }
+                        <li>@Html.ActionLink("Se deconnecter", "logout", "Auth")</li>
+                        <li><a href="#"> @Session["client"]</a> </li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content" style="max-width: 1408px;
+        width: 70%;
+        margin: 0 auto;
+        padding: 0 40px 96px;
+        display: flex;
+        flex-direction: column;
+        flex:1 0 auto;">
+        <div style="display: flex;
+        flex-direction: column;
+        height: 100%;
+        flex:1 1;">
+            @RenderBody()
+        </div>
+       
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Mon application ASP.NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+
+
+            $(".newTransport").mousedown(function () {
+                $("form").first().attr('action', 'newTrajetTransport');
+            });
+        });
+    </script>
+</body>
+</html>

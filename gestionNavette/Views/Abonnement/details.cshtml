@@ -1,0 +1,73 @@
+﻿
+@model gestionNavette.Models.abonnement
+
+@{
+    ViewBag.Title = "details";
+}
+
+<div class="row" style="margin-top:50px;">
+    <div class="col-lg-4">
+
+        <ol class="list-group">
+            <li class="list-group-item" style="text-align: center;color: #1A4881;font-weight: 700;font-style: normal;font-size: 14px;line-height: 18px;letter-spacing:.1px;">Trajet</li>
+            <li class="list-group-item">Depart          :@ViewBag.trajet.villeD</li>
+            <li class="list-group-item">Arrivé          :@ViewBag.trajet.villeA</li>
+            <li class="list-group-item">Heure de depart :@ViewBag.trajet.heureD</li>
+            <li class="list-group-item">Heure d'arrivé  :@ViewBag.trajet.heureA</li>
+        </ol>
+
+    </div>
+
+    <div class="col-lg-4">
+        <ol class="list-group">
+            <li class="list-group-item" style="text-align: center;color: #1A4881;font-weight: 700;font-style: normal;font-size: 14px;line-height: 18px;letter-spacing: .1px;">Transport</li>
+            <li class="list-group-item">type            :@ViewBag.transport.type</li>
+            <li class="list-group-item">marque          :@ViewBag.transport.marque</li>
+            <li class="list-group-item">nombre de places:@ViewBag.transport.capacite</li>
+            <li class="list-group-item">couleur         :@ViewBag.transport.couleur</li>
+            <li class="list-group-item">nombre de portes:@ViewBag.transport.nbrPortes</li>
+            @if (@ViewBag.transport.clim == true)
+            {
+                <li class="list-group-item">clim   :oui</li>
+            }
+            else
+            {
+                <li class="list-group-item">clim   :non</li>
+            }
+        </ol>
+    </div>
+    <div class="col-lg-4">
+        <ol class="list-group">
+            <li class="list-group-item" style="text-align: center;color: #1A4881;font-weight: 700;font-style: normal;font-size: 14px;line-height: 18px;letter-spacing: .1px;">Societe</li>
+            <li class="list-group-item">Nom Societé       :@ViewBag.societe.nomS</li>
+            <li class="list-group-item">Adresse          :@ViewBag.societe.adresse</li>
+            <li class="list-group-item">nom de Administarteur :@ViewBag.societe.client.prenom @ViewBag.societe.client.nom</li>
+            <li class="list-group-item">Email :@ViewBag.societe.client.email</li>
+
+        </ol>
+    </div>
+</div>
+
+@if (ViewBag.abExiste != null)
+{
+    <div class="alert alert-success">vous etes abonné a ce trajet</div>
+}
+
+@if (Session["isSociete"] == null && Session["idClient"] != null && ViewBag.abExiste == null && Session["admin"] == null)
+{
+    <div class="row justify-content-md-center" style=" margin-top:5px;">
+        <div class="col col-lg-6" style=" margin-left: 200px; padding: 50px; padding-left: 60px;padding-top:5px; background-color: #fff; border-radius: 8px;">
+            <h3 style="color:#000;">S'abonner</h3>
+            <form action="/abonner/@ViewBag.trajet.Id/@ViewBag.transport.Id" method="post">
+
+                @Html.LabelFor(s => s.nbrMois, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(s => s.nbrMois, new { @Class = "form-control" })
+                @Html.ValidationMessageFor(s => s.nbrMois, "", new { @Class = "alert-danger" })
+                <button type="submit" class="btn btn-success">s'abonner</button>
+            </form>
+            </div>
+        </div>
+            }
+
+
+

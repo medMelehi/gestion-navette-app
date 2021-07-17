@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="gestionNavetteModelStoreContainer" CdmEntityContainer="gestionNavetteEntities2">
+    <EntitySetMapping Name="abonnements">
+      <EntityTypeMapping TypeName="gestionNavetteModel.abonnement">
+        <MappingFragment StoreEntitySet="abonnement">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nbrMois" ColumnName="nbrMois" />
+          <ScalarProperty Name="id_client" ColumnName="id_client" />
+          <ScalarProperty Name="id_trajet" ColumnName="id_trajet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clients">
+      <EntityTypeMapping TypeName="gestionNavetteModel.client">
+        <MappingFragment StoreEntitySet="client">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="isSociete" ColumnName="isSociete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="societes">
+      <EntityTypeMapping TypeName="gestionNavetteModel.societe">
+        <MappingFragment StoreEntitySet="societe">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nomS" ColumnName="nomS" />
+          <ScalarProperty Name="adresse" ColumnName="adresse" />
+          <ScalarProperty Name="id_client" ColumnName="id_client" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trajets">
+      <EntityTypeMapping TypeName="gestionNavetteModel.trajet">
+        <MappingFragment StoreEntitySet="trajet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="heureD" ColumnName="heureD" />
+          <ScalarProperty Name="heureA" ColumnName="heureA" />
+          <ScalarProperty Name="villeD" ColumnName="villeD" />
+          <ScalarProperty Name="prix" ColumnName="prix" />
+          <ScalarProperty Name="villeA" ColumnName="villeA" />
+          <ScalarProperty Name="id_transport" ColumnName="id_transport" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transports">
+      <EntityTypeMapping TypeName="gestionNavetteModel.transport">
+        <MappingFragment StoreEntitySet="transport">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="marque" ColumnName="marque" />
+          <ScalarProperty Name="capacite" ColumnName="capacite" />
+          <ScalarProperty Name="clim" ColumnName="clim" />
+          <ScalarProperty Name="couleur" ColumnName="couleur" />
+          <ScalarProperty Name="nbrPortes" ColumnName="nbrPortes" />
+          <ScalarProperty Name="id_societe" ColumnName="id_societe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="demandes">
+      <EntityTypeMapping TypeName="gestionNavetteModel.demande">
+        <MappingFragment StoreEntitySet="demande">
+          <ScalarProperty Name="id_client" ColumnName="id_client" />
+          <ScalarProperty Name="villeA" ColumnName="villeA" />
+          <ScalarProperty Name="villeD" ColumnName="villeD" />
+          <ScalarProperty Name="heureD" ColumnName="heureD" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="admins">
+      <EntityTypeMapping TypeName="gestionNavetteModel.admin">
+        <MappingFragment StoreEntitySet="admin">
+          <ScalarProperty Name="id_client" ColumnName="id_client" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

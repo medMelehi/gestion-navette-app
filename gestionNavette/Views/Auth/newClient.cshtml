@@ -1,0 +1,46 @@
+﻿@model gestionNavette.Models.client
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="row justify-content-md-center" style=" margin-top:50px;">
+    <div class="col col-lg-6" style=" margin-left: 200px; padding: 50px; padding-left: 60px;padding-top:35px; background-color: #fff; border-radius: 8px;">
+        <h3 style="color:#000;">Inscription</h3>
+        @using (Html.BeginForm("CreateClient", "Auth", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.LabelFor(s => s.nom, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(s => s.nom, new { @Class = "form-control" })
+                @Html.ValidationMessageFor(s => s.nom, "", new { @Class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(s => s.prenom, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(s => s.prenom, new { @Class = "form-control" })
+                @Html.ValidationMessageFor(s => s.prenom, "", new { @Class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(s => s.email, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(s => s.email, new { @Class = "form-control" })
+                @Html.ValidationMessageFor(s => s.email, "", new { @Class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(s => s.telephone, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(s => s.telephone, new { @Class = "form-control" })
+                @Html.ValidationMessageFor(s => s.telephone, "", new { @Class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(s => s.password, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(s => s.password, new { @Class = "form-control" })
+                @Html.ValidationMessageFor(s => s.password, "", new { @Class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(s => s.confirmPassword, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(s => s.confirmPassword, new { @Class = "form-control" })
+                @Html.ValidationMessageFor(s => s.confirmPassword, "", new { @Class = "alert-danger" })
+            </div>
+
+
+            <input class="btn btn-primary" type="submit" name="name" value="s'inscrire" />
+        }
+</div>  
+</div>

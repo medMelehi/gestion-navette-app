@@ -1,0 +1,64 @@
+﻿@model gestionNavette.Models.SocieteClient
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (TempData["condition"] != null)
+{
+<div class="alert alert-danger">@TempData["condition"]</div>
+}
+
+<div class="row justify-content-md-center" style=" margin-top:50px;">
+    <div class="col col-lg-6" style=" margin-left: 200px; padding: 50px; padding-left: 60px;padding-top:35px; background-color: #fff; border-radius: 8px;">
+        <h3 style="color:#000;">nouvelle societe</h3>
+
+        @using (Html.BeginForm("CreateSociete", "Auth", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.LabelFor(s => s.societe.nomS, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(s => s.societe.nomS, new { @Class = "form-control" })
+                @Html.ValidationMessageFor(s => s.societe.nomS, "", new { @Class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(s => s.societe.adresse, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(s => s.societe.adresse, new { @Class = "form-control" })
+                @Html.ValidationMessageFor(s => s.societe.adresse, "", new { @Class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.client.nom, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(c => c.client.nom, new { @Class = "form-control" })
+                @Html.ValidationMessageFor(c => c.client.nom, "", new { @Class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.client.prenom, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(c => c.client.prenom, new { @Class = "form-control" })
+                @Html.ValidationMessageFor(c => c.client.prenom, "", new { @Class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.client.email, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(c => c.client.email, new { @Class = "form-control" })
+                @Html.ValidationMessageFor(c => c.client.email, "", new { @Class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.client.telephone, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(c => c.client.telephone, new { @Class = "form-control" })
+                @Html.ValidationMessageFor(c => c.client.telephone, "", new { @Class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.client.password, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(c => c.client.password, new { @Class = "form-control" })
+                @Html.ValidationMessageFor(c => c.client.password, "", new { @Class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.client.confirmPassword, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(c => c.client.confirmPassword, new { @Class = "form-control" })
+                @Html.ValidationMessageFor(c => c.client.confirmPassword, "", new { @Class = "alert-danger" })
+            </div>
+
+
+            <input class="btn btn-primary" type="submit" name="name" value="s'inscrire" />
+        }
+</div>
+</div>

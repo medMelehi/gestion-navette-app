@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="63b7de5fc2c24a50a703f4864e0fee07" Name="Diagram1" ZoomLevel="59">
+        <EntityTypeShape EntityType="gestionNavetteModel.abonnement" Width="1.5" PointX="8.875" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestionNavetteModel.client" Width="1.5" PointX="3.875" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestionNavetteModel.societe" Width="1.5" PointX="1.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestionNavetteModel.trajet" Width="1.5" PointX="6.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestionNavetteModel.transport" Width="1.5" PointX="1.625" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="gestionNavetteModel.FK__abonnemen__id_cl__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="gestionNavetteModel.FK__abonnemen__id_tr__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="gestionNavetteModel.FK__societe__id_clie__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="gestionNavetteModel.FK__transport__id_so__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="gestionNavetteModel.FK__trajet__id_trans__2E1BDC42" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="gestionNavetteModel.demande" Width="1.5" PointX="6.625" PointY="1.25" />
+        <AssociationConnector Association="gestionNavetteModel.FK__demande__id_clie__4CA06362" />
+        <EntityTypeShape EntityType="gestionNavetteModel.admin" Width="1.5" PointX="3.875" PointY="1.125" />
+        <AssociationConnector Association="gestionNavetteModel.FK__admin__id_client__6FE99F9F" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

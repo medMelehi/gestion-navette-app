@@ -1,0 +1,40 @@
+﻿@using gestionNavette.Models;
+
+@{
+    ViewBag.Title = "listClients";
+}
+
+
+@if (ViewBag.listClients == null)
+{
+    <h3 class="alert alert-danger">vous n'avez aucun client</h3>
+}
+else
+{
+    <div class="row justify-content-md-center" style=" margin-top:50px;">
+        <div class="col col-lg-10" style=" margin-left: 50px; padding: 50px; padding-left: 50px; background-color: #fff; border-radius: 8px;">
+            <h3 style="color:#000;">liste de clients</h3>
+            <table class="table">
+                <tr style=" color: #1A4881; font-weight: 700; margin-left: 8px; font-style: normal; font-size: 14px; line-height: 18px; letter-spacing: .1px;">
+                    <td>id</td>
+                    <td>nom</td>
+                    <td>prenom</td>
+                    <td>email</td>
+                    <td>telephone</td>
+                </tr>
+                @foreach (client item in ViewBag.listClients)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.nom</td>
+                        <td>@item.prenom</td>
+                        <td>@item.email</td>
+                        <td>@item.telephone</td>
+                    </tr>
+                }
+            </table>
+            </div>
+        </div>
+            }
+
+

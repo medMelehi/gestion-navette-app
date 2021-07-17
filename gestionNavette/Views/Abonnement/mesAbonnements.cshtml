@@ -1,0 +1,62 @@
+﻿
+@using gestionNavette.Models;
+@{
+    ViewBag.Title = "mesAbonnements";
+}
+
+<h2 style="color:#fff;">mesAbonnements</h2>
+
+<div style="display: flex;flex-direction: column;margin: 36px 0 0;width: 100%;flex: 1 0 auto;border-radius: 4px;box-shadow: 0 22px 34px rgba(0,0,0,.1);overflow: hidden;width: 100%;margin: 0 auto;">
+
+
+    @if (ViewBag.mesAbonnements == null)
+    {
+        <h2 class="alert alert-danger">vous n'avez aucune abonnements en ce moment ...</h2>
+    }
+    else
+    {
+<div style="margin: 5px;background: #fff;height: 60px;padding: 10px;position: relative;color: #1A4881;font-weight: 700;margin-left: 8px;font-style: normal;font-size: 14px;line-height: 18px;letter-spacing: .1px;background : #dfdcdc;">
+    <div style="position: absolute;top: 20px;left: 30px;">
+        heure
+    </div>
+    <div style="position: absolute;top: 20px;left: 140px;">
+        depart/arrivé
+    </div>
+
+    <div style=" position: absolute;top: 20px;right: 260px;">
+        Prix
+    </div>
+    <div style=" position: absolute;top: 20px;right: 155px;">
+        durée(mois)
+    </div>
+
+</div>
+
+        foreach (abonnement item in ViewBag.mesAbonnements)
+        {
+
+<div style="margin: 5px;background: #fff;height: 100px;padding: 10px;position: relative;font-weight: 700;margin-left: 8px;font-style: normal;font-size: 14px;line-height: 18px;letter-spacing: .1px;">
+    <div style="position: absolute;top: 30px;left: 30px;">
+        @item.trajet.heureD <br />
+        @item.trajet.heureA
+    </div>
+    <div style="position: absolute;top: 30px;left: 150px;color: #1A4881;">
+        @item.trajet.villeD <br />
+        @item.trajet.villeA
+    </div>
+
+    <div style=" position: absolute;top: 40px;right: 250px;">
+        @item.trajet.prix DH
+    </div>
+    <div style=" position: absolute;top: 40px;right: 180px;">
+        @item.nbrMois
+    </div>
+    <div style="position: absolute; top: 40px; right: 47px;">
+        <a href="details/@item.trajet.Id" class="btn-sm btn btn-primary">Details</a>
+
+    </div>
+</div>
+        }
+
+    }
+

@@ -1,0 +1,36 @@
+﻿@model gestionNavette.Models.Login
+@{
+    ViewBag.Title = "login";
+}
+@if (TempData["sign"] != null)
+{
+    <p class="alert alert-success" >@TempData["sign"]</p>
+}
+
+<h1>
+    @ViewBag.login
+</h1>
+@if (TempData["indisponible"] != null)
+{
+    <h3 class="alert alert-danger">@TempData["indisponible"]</h3>
+}
+<div class="row justify-content-md-center" style=" margin-top:50px;">
+    <div class="col col-lg-6"style=" margin-left: 200px; padding: 50px; padding-left: 60px;padding-top:35px; background-color: #fff; border-radius: 8px;">
+        <h3 style="color:#000;">connexion</h3>
+        @using (Html.BeginForm("loginSubmit", "Auth", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.LabelFor(l => l.email, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(l => l.email, new { @Class = "form-control" })
+                @Html.ValidationMessageFor(l => l.email, "", new { @Class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(l => l.password, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(l => l.password, new { @Class = "form-control" })
+                @Html.ValidationMessageFor(l => l.password, "", new { @Class = "alert-danger" })
+            </div>
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+        }
+    </div>
+    
+</div>

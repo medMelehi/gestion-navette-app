@@ -1,0 +1,67 @@
+﻿@model gestionNavette.Models.TrajetTransport
+@{
+    ViewBag.Title = "newTrajet";
+}
+@{ 
+@*    var display = "";
+    if (TempData["display"] =! null)
+    {
+        display = "block;";
+    }
+    else
+    {
+        display = "none;";
+    }*@
+}
+<div class="row justify-content-md-center" style=" margin-top:50px;">
+    <div class="col col-lg-6" style=" margin-left: 200px; padding: 50px; padding-left: 60px;padding-top:35px; background-color: #fff; border-radius: 8px;">
+        <h3 style="color:#000;">Nouveau Trajet</h3>
+
+        @using (Html.BeginForm("CreateTrajet", "Abonnement", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.LabelFor(s => s.trajet.villeD, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(s => s.trajet.villeD, new { @Value = TempData["vd"], @Class = "form-control" })
+                @Html.ValidationMessageFor(s => s.trajet.villeD, "", new { @Class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(s => s.trajet.villeA, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(s => s.trajet.villeA, new { @Value = TempData["va"], @Class = "form-control" })
+                @Html.ValidationMessageFor(s => s.trajet.villeA, "", new { @Class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(s => s.trajet.heureD, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(s => s.trajet.heureD, new { @Value = TempData["hd"], @Class = "form-control" })
+                @Html.ValidationMessageFor(s => s.trajet.heureD, "", new { @Class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(s => s.trajet.heureA, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(s => s.trajet.heureA, new { @Value = TempData["ha"], @Class = "form-control" })
+                @Html.ValidationMessageFor(s => s.trajet.heureA, "", new { @Class = "alert-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(s => s.trajet.prix, new { @Class = "label label-primary" })
+                @Html.TextBoxFor(s => s.trajet.prix, new { @Value = TempData["p"], @Class = "form-control" })
+                @Html.ValidationMessageFor(s => s.trajet.prix, "", new { @Class = "alert-danger" })
+            </div>
+
+
+            ////////////transport//////////////
+
+
+            <div class="row">
+                <div class="col-lg-1">
+                    <div class="form-group">
+                        @Html.LabelFor(s => s.trajet.id_transport, new { @Class = "label label-primary" })
+                        @Html.DropDownList("trajet.id_transport", (SelectList)ViewBag.transports, "choisir votre transport", new { @Class = "form-control" })
+                        @Html.ValidationMessageFor(s => s.trajet.id_transport, "", new { @Class = "alert-danger" })
+                        <button type="submit" class="btn-sm btn btn-default newTransport">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <input class="btn btn-primary" type="submit" name="name" value="Ajouter" />
+        }
+
+</div>
+</div>
